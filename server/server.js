@@ -2,11 +2,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express();
 const dotenv = require('dotenv')
-const cors = require('cors')
+const cors = require('cors');
 const mongoConnect = require('./db.js')
 dotenv.config();
 mongoConnect();
 
+app.use(cors());
 app.use((req,res,next)=>{
     res.setHeader("Access-Control-Allow-Origin","http://localhost:5173");
     res.header(

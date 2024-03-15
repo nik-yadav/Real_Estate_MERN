@@ -10,12 +10,13 @@ import AddProperty from '../AddProperty/AddProperty.jsx'
 
 const Header = () => {
 
-    const [modalOpened, setModalOpened] = useState(false);
-
+    
     const navigate = useNavigate();
+    
+    const [opened, setopened] = useState(false)
 
-    const handleaddpropertyClick = () =>{
-        setModalOpened(true)
+    const handleAddProperty = () => {
+        setopened(true)
     }
 
   return (
@@ -28,8 +29,8 @@ const Header = () => {
             <div className='flexCenter h-menu'>
                 <NavLink to="/properties">Properties</NavLink>
                 <a href='nikhil.yadav.a12@gmail.com'>Contact</a>
-                <div onClick={handleaddpropertyClick}>Add Property</div>
-                <AddProperty  opened={modalOpened} setOpened={setModalOpened} />
+                <div onClick={handleAddProperty}>Add Property</div>
+                <AddProperty opened={opened} setopened={setopened} />
                 {/* <button className='button' onClick={()=>navigate('/login')}>Login</button> */}
 
                 {!localStorage.getItem('authToken')?

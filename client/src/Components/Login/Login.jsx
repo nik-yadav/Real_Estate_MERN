@@ -22,7 +22,7 @@ const Login = () => {
 
     e.preventDefault();
 
-    console.log(credentials)
+    // console.log(credentials)
 
     const response = await fetch('http://localhost:5000/routes/loginuser',{
       method: 'POST',

@@ -1,79 +1,78 @@
-import React from 'react'
-import Map from "../Map/Map"
-import useCountries from "../../hooks/useCountries"
-import {useForm} from "@mantine/form";
-import {Button, Group, Select, TextInput} from "@mantine/core"
+import React from "react";
+import {Button, Input, Select} from "@chakra-ui/react"
+import useCountries from "../../hooks/useCountries";
+// import { useForm } from "@mantine/form";
+// import { validateString } from "../../utils/common";
+// import { Button, Group, Select, TextInput } from "@mantine/core";
+// import useCountries from "../../hooks/useCountries";
+// import Map from "../Map/Map";
 
-const AddLocation = ({propertyDetails, setPropertyDetails, nextStep}) => {
-    const { getAll } = useCountries();
-    const form = useForm({
-      initialValues: {
-        country: propertyDetails?.country,
-        city: propertyDetails?.city,
-        address: propertyDetails?.address,
-      },
-    });
-  
-    const { country, city, address } = form.values;
+const AddLocation = ({ nextStep, propertyDetails, setPropertyDetails }) => {
 
-    const handleSubmit = () => {
-      nextStep();
-    }
-  
-    return (
-      <form
-       >
-        <div
-          className="flexCenter"
-          style={{
-            justifyContent: "space-between",
-            gap: "3rem",
-            marginTop: "3rem",
-            flexDirection: "row",
-          }}
-        >
-          {/* left side */}
-          {/* inputs */}
-  
-          <div className="flexColStart" style={{ flex: 1, gap: "1rem" }}>
-            <Select
-              w={"100%"}
-              // withAsterisk
-              label="Country"
-              clearable
-              searchable
-              data={getAll()}
-              {...form.getInputProps("country", { type: "input" })}
-            />
-  
-            <TextInput
-              w={"100%"}
-              // withAsterisk
-              label="City"
-              {...form.getInputProps("city", { type: "input" })}
-            />
-  
-            <TextInput
-              w={"100%"}
-              // withAsterisk
-              label="Address"
-              {...form.getInputProps("address", { type: "input" })}
-            />
-          </div>
-  
-          {/* right side */}
-  
-          {/* <div style={{ flex: 1 }}>
-            <Map address={address} city={city} country={country} />
-          </div> */}
+  const {getAll} = useCountries();
+
+  const handleChange = (e) => {
+    setPropertyDetails({...propertyDetails, [e.target.name]:e.target.value})
+    console.log(propertyDetails)
+  }
+
+  const handleSubmit = ()=> {
+    nextStep();
+  }
+  return (
+    <form
+    onSubmit={(e)=>{
+        e.preventDefault();
+        handleSubmit()
+    }}
+    >
+      <div
+        className="flexCenter"
+        style={{
+          gap: "3rem",
+          flexDirection: "row",
+          color: "black"
+        }}
+      >
+        {/* left side */}
+        {/* inputs */}
+        
+        <div className="flexColStart" style={{ flex: 1, gap: "1rem" }}>
+          Country
+          <Select placeholder='Select option' name="country" onChange={handleChange}
+          w={"100%"}
+          >
+            {getAll().map((country) => (
+              <option key={country.value} value={country.value} style={{color:"black "}}>
+                {country.label}
+              </option>
+            ))}
+          </Select>
+          City
+          <Input placeholder="City" name="city" focusBorderColor='purple.500' onChange={handleChange}/>
+
+          Address
+          <Input
+            w={"100%"}
+            // withAsterisk
+            placeholder="Address"
+            name="address"
+            onChange={handleChange}
+          />
         </div>
-  
-        <Group position="center" mt={"xl"}>
-          <Button type="submit">Next Step</Button>
-        </Group>
-      </form>
-    );
-  };
-  
-  export default AddLocation;
-  
+
+        {/* right side */}
+
+        <div style={{ flex: 1 }}>
+          <h4>Hello there</h4>
+        </div>
+      </div>
+
+      {/* <Group position="center" mt={"xl"}> */}
+        <Button type="submit" className="nextstep">Next Step</Button>
+      {/* </Group> */}
+    </form>
+  );
+};
+
+export default AddLocation;
