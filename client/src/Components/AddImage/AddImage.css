@@ -1,15 +1,33 @@
 .uploadWrapper{
     padding: 2rem;
-    margin: 2rem;
+    margin-top: 1rem;
+    gap: 2rem;
 }
 
 .uploadZone{
+    max-width: 20%;
+    height: 40vh;
     padding: 7rem 13rem;
-    border: 1px dotted black;
+    border: 2px dashed grey;
+    cursor: pointer;
+}
+
+.uploadedImage{
+    width: 70%;
+    height: 20rem;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden    ;
+}
+.uploadedImage > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .buttons{
-    padding: 2rem 10rem;
+    margin-top: -2rem;
+    padding: 2rem 15rem;
     width: 50%;
     display: flex;
     justify-content: space-around;

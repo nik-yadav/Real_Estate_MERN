@@ -36,6 +36,10 @@ const ResidencySchema = new Schema({
         type: String,
         // required: true,
     },
+    facilities:{
+        type: Object,
+        required: true,
+    },
     owner: {
         type:String,
     },

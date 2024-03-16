@@ -20,12 +20,16 @@ router.post('/properties', async(req, res)=> {
             description: req.body.description,
             price: req.body.price,
             address: req.body.address,
+            image: req.body.image,
+            userEmail: req.body.userEmail,
             city: req.body.city,
             country: req.body.country,
+            facilities: req.body.facility,
         })
 
         res.json({success: true})
     } catch (error) {
+        console.log(error.message)
         res.json({status: false})
     }
 })
@@ -42,5 +46,7 @@ router.post('/properties/:propertyid', async(req, res) => {
         res.json({success: false})
     }
 })
+
+router.post('/addproperty')
 
 module.exports = router;

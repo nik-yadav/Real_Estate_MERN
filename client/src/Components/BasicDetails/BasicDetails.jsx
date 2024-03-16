@@ -8,48 +8,63 @@ const BasicDetails = ({
   propertyDetails,
   setPropertyDetails,
 }) => {
-  const handleChange = (e) => {
-    setPropertyDetails({ ...propertyDetails, [e.target.name]: e.target.value });
+  const handleChange = (event) => {
+    console.log(propertyDetails)
+    setPropertyDetails({...propertyDetails, [event.target.name]:event.target.value});
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
-      <div className="flexCenter basic-wrapper">
-        Property Name
-        <Input
-          placeholder="Property Name "
-          name="propertyname"
-          focusBorderColor="purple.500"
-          onChange={handleChange}
-        />
-        Description
-        <Textarea
-          placeholder="Enter Property Description"
-          name="description"
-          onChange={handleChange}
-        />
-        Price
-        <Input
-          placeholder="Price"
-          min={0}
-          name="price"
-          onChange={handleChange}
-        />
-      </div>
-      <div className="buttons">
-        <Button onClick={prevStep}>Back</Button>
-        <Button
-          onClick={nextStep}
-          // disabled={!imageURL}
-        >
-          Next
-        </Button>
-      </div>
-    </form>
+    <div className="details-wrapper">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <div className="flexColCenter details-container">
+          <div className="input">
+            Property Name
+            <Input
+              placeholder="Property Name "
+              name="propertyname"
+              focusBorderColor="purple.500"
+              style={{width:"400px"}}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="input">
+            Description
+            <Textarea
+              placeholder="Enter Property Description"
+              name="description"
+              resize={"none"}
+              focusBorderColor="purple.500"
+              onChange={handleChange}
+            />
+          </div>
+          
+          <div className="input">
+            Price
+            <Input
+              placeholder="Price"
+              type="number"
+              min={0}
+              name="price"
+              style={{width:"200px"}}
+              focusBorderColor="purple.500"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="buttons">
+          <Button onClick={prevStep}>Back</Button>
+          <Button
+            onClick={nextStep}
+          >
+            Next
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

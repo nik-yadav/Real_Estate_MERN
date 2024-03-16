@@ -65,7 +65,7 @@ router.post('/loginuser',async(req,res)=> {
                 }
             }
             const authToken = jwt.sign(data, jwtsecret)
-            res.status(200).json({success: true, authToken: authToken})
+            res.status(200).json({success: true, authToken: authToken, mail: userData.email})
         }    
     } catch (error) {
         console.log(error);

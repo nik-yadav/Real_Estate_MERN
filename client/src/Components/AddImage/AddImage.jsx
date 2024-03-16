@@ -11,8 +11,24 @@ const AddImage = ({
   const [imageURL, setImageURL] = useState(propertyDetails.image);
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
+
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary;
+    widgetRef.current = cloudinaryRef.current.createUploadWidget(
+      {
+        cloudName:"dbpqnhald",
+        uploadPreset:"wiyixffh",
+        maxFiles:1, 
+      },
+      (err, result) => {
+        if(result.event === "success"){
+          setImageURL(result.info.secure_url)
+        }
+      }
+    )
+  })
   const handleNext = () => {
-    setPropertyDetails((prev) => ({ ...prev, image: imageURL }));
+    setPropertyDetails({...propertyDetails, image: imageURL});
     nextStep();
   };
 
@@ -22,16 +38,16 @@ const AddImage = ({
       {!imageURL ? (
         <div
           className="flexColCenter uploadZone"
-          // onClick={() => widgetRef.current?.open()}
+          onClick={() => widgetRef.current?.open()}
         >
           {/* <h2>Upload Image</h2> */}
-          <AiOutlineCloudUpload size={120} color="grey" />
+          <AiOutlineCloudUpload size={80} color="grey" />
           <span style={{color: "black"}}>Upload Image</span>
         </div>
       ) : (
         <div
           className="uploadedImage"
-          // onClick={() => widgetRef.current?.open()}
+          onClick={() => widgetRef.current?.open()}
         >
           <img src={imageURL} alt="" />
         </div>
@@ -41,7 +57,7 @@ const AddImage = ({
           <Button onClick={prevStep}>
             Back
           </Button>
-          <Button onClick={nextStep} 
+          <Button onClick={handleNext} 
           // disabled={!imageURL}
           >
             Next

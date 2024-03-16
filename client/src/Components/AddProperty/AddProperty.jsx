@@ -3,6 +3,7 @@ import "./AddProperty.css"
 import AddLocation from "../AddLocation/AddLocation"
 import AddImage from "../AddImage/AddImage"
 import BasicDetails from "../BasicDetails/BasicDetails.jsx"
+import Facilities from "../Facilities/Facilities.jsx"
 import {ChakraProvider, theme} from "@chakra-ui/react"
  
 const AddProperty = ({opened, setopened}) => {
@@ -23,6 +24,12 @@ const AddProperty = ({opened, setopened}) => {
       city:"",
       country:"",
       address:"",
+      image:"",
+      facilities: {
+        bedrooms:0,
+        parkings:0,
+        bathrooms:0
+      }
   })
 
   return (
@@ -49,7 +56,7 @@ const AddProperty = ({opened, setopened}) => {
         )}
         {opened && active === 4 && (
           <div>
-            <Facilities prevStep={prevStep}/>
+            <Facilities prevStep={prevStep} propertyDetails={propertyDetails} setPropertyDetails={setPropertyDetails}/>
           </div>
         )}
         {opened && active === 5 && (
