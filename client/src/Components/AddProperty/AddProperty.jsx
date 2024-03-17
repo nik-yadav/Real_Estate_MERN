@@ -12,10 +12,7 @@ const AddProperty = ({opened, setopened}) => {
     return null;
   }
 
-  const handleCloseModal = () => {
-    setActive(1);
-    setopened(false);   
-  }
+  
 
   const [active, setActive] = useState(1);
   const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
@@ -27,11 +24,16 @@ const AddProperty = ({opened, setopened}) => {
       image:"",
       facilities: {
         bedrooms:0,
-        parkings:0,
+        parking:0,
         bathrooms:0
       }
   })
 
+  const handleCloseModal = () => {
+    setActive(1);
+    setopened(false);   
+  }
+  
   return (
     <ChakraProvider theme={theme}>
     <div className="modal">

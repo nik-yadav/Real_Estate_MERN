@@ -15,7 +15,7 @@ const Facilities = ({
       const handleSubmit = async() => {
         const email = localStorage.getItem('mail');
         const date = new Date();
-        e.preventDefault();
+        // e.preventDefault();
         console.log(propertyDetails);
         const response = await fetch('http://localhost:5000/property/properties', {
           method:"POST",
@@ -31,14 +31,15 @@ const Facilities = ({
             userEmail: email,
             city: propertyDetails.city,
             country: propertyDetails.country,
-            facilities: propertyDetails.facility,
+            facility: propertyDetails.facilities,
             createdAt: date,
           })
         })
 
-        const json = response.json();
+        const json = await response.json();
         if(!json.success){
-          alert("Cannot add your property")
+          // alert("Cannot add your property")
+          console.log("noa added ")
         }
         if(json.success){
           alert("Your Property is Added")
@@ -48,9 +49,10 @@ const Facilities = ({
   return (
     <div className="facility-wrapper">
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
+        // onSubmit={(e) => {
+        //   e.preventDefault();
+        //   handleSubmit
+        // }}
       >
         <div className="flexCenter facility-container">
           <div className="input">
@@ -90,7 +92,7 @@ const Facilities = ({
         <div className="buttons">
           <Button onClick={prevStep}>Back</Button>
           <Button
-          //  onSubmit={handleSubmit}
+          onClick={handleSubmit}
            >Submit</Button>
         </div>
       </form>

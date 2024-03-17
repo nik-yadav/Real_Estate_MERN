@@ -13,7 +13,7 @@ const AddLocation = ({ nextStep, propertyDetails, setPropertyDetails }) => {
 
   const handleChange = (e) => {
     setPropertyDetails({...propertyDetails, [e.target.name]:e.target.value})
-    console.log(propertyDetails)
+    // console.log(propertyDetails)
   }
 
   const handleSubmit = ()=> {

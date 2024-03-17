@@ -39,7 +39,7 @@ router.post('/properties/:propertyid', async(req, res) => {
     _id = req.params.propertyid
     try {
         const userData = await ram.findOne({_id});
-        console.log("done your data");
+        // console.log("done your data");
         res.json({success: true, userData})
     } catch (error) {
         console.log(error.message)

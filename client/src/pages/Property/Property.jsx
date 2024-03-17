@@ -8,11 +8,12 @@ import { LuDoorOpen } from "react-icons/lu";
 import { MdLocationPin } from "react-icons/md";
 import { loadProperty } from "../../utils/api.js";
 import Map from "../../Components/Map/Map.jsx";
-import BookingModal from "../../Components/BookingModal/BookingModal.jsx";
+// import BookingModal from "../../Components/BookingModal/BookingModal.jsx";
 import { PuffLoader } from "react-spinners";
 
 const Property = () => {
   // const [propertyState] = useContext(propertycontext)
+  const [modalOpened, setModalOpened] = useState(false);
   const [userData, setuserData] = useState();
   const { pathname } = useLocation();
   const id = pathname.split("/").slice(-1)[0];
@@ -75,13 +76,13 @@ const Property = () => {
                   </div>
 
                   {/* booking part */}
-                  <button className="button">Book Your Visit</button>
+                  <button className="button" onClick={() => setModalOpened(true)}>Book Your Visit</button>
                   {/* <BookingModal 
-                opended={modalOpened}
-                setOpened={setModalOpened}
-                propertyID={id}
-                email={propertyState.email}
-              /> */}
+                    opended={modalOpened}
+                    setOpened={setModalOpened}
+                    propertyID={id}
+                    email={propertyState.email}
+                  /> */}
                 </div>
 
                 {/* right side */}

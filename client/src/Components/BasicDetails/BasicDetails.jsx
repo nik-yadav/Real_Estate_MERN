@@ -9,7 +9,7 @@ const BasicDetails = ({
   setPropertyDetails,
 }) => {
   const handleChange = (event) => {
-    console.log(propertyDetails)
+    // console.log(propertyDetails)
     setPropertyDetails({...propertyDetails, [event.target.name]:event.target.value});
   };
 
@@ -25,7 +25,7 @@ const BasicDetails = ({
             Property Name
             <Input
               placeholder="Property Name "
-              name="propertyname"
+              name="title"
               focusBorderColor="purple.500"
               style={{width:"400px"}}
               onChange={handleChange}
