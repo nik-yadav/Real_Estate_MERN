@@ -8,7 +8,7 @@ import { LuDoorOpen } from "react-icons/lu";
 import { MdLocationPin } from "react-icons/md";
 import { loadProperty } from "../../utils/api.js";
 import Map from "../../Components/Map/Map.jsx";
-// import BookingModal from "../../Components/BookingModal/BookingModal.jsx";
+import BookingModal from "../../Components/BookingModal/BookingModal.jsx";
 import { PuffLoader } from "react-spinners";
 
 const Property = () => {
@@ -77,12 +77,12 @@ const Property = () => {
 
                   {/* booking part */}
                   <button className="button" onClick={() => setModalOpened(true)}>Book Your Visit</button>
-                  {/* <BookingModal 
+                  <BookingModal 
                     opended={modalOpened}
                     setOpened={setModalOpened}
                     propertyID={id}
-                    email={propertyState.email}
-                  /> */}
+                    email={localStorage.getItem('mail')}
+                  />
                 </div>
 
                 {/* right side */}

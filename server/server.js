@@ -20,11 +20,13 @@ app.use((req,res,next)=>{
 app.use(bodyParser.json());
 const userRoutes = require('./Routes/UserRoutes.js')
 const propertyRoute = require('./Routes/PropertyRoute.js')
+const bookingRoute = require('./Routes/BookingRoute.js');
 
 port = process.env.PORT || 8000;
 
 app.use('/routes', userRoutes);
 app.use('/property', propertyRoute);
+app.use('/bookings', bookingRoute)
 
 
 app.listen(port, ()=>{
