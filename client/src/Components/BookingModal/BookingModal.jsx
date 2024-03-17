@@ -7,16 +7,42 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 
-const BookingModal = ({opended, setOpened}) => {
+const BookingModal = ({opended, setOpened, propertyId, email}) => {
 
   if(!opended){
     return null
   }
 
   const [date, setDate] = useState(dayjs(new Date()))
-  const handleCloseModal = () => {
+  const handleCloseModal = async() => {
     setOpened(false);
-    console.log(date);
+    // console.log(date);
+    const response = await fetch(`http://localhost:5000/bookings/:${propertyId}`, {
+      method:"POST",
+      headers:{
+          "Content-Type":"application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        date: date,
+      })
+    })
+
+    const json = await response.json();
+
+    console.log(json)
+
+    if(!json.success){
+      if(json.message){
+        alert("This Property is already Booked")
+      }else{
+        alert("Server Error")
+      }
+    }
+
+    if(json.success){
+      alert("Your Property is added")
+    }
   };
 
   return (

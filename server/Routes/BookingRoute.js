@@ -17,7 +17,12 @@ router.post('/:bookingid', async(req, res)=> {
     try {
         const userData = await ram.findOne({email})
 
+        console.log("hi")
+
         if(userData.bookedVisits === undefined || userData.bookedVisits.length === 0 ){
+
+            console.log("bi")
+
             await ram.findOneAndUpdate({email: req.body.email}, 
                 { $push:{bookedVisits: array} }
                 ).then(async()=> {
@@ -25,6 +30,9 @@ router.post('/:bookingid', async(req, res)=> {
                     res.json({success: true, data: data})
                 })
         }else{
+
+            console.log("ci")
+
             const result = userData.bookedVisits.filter(checkid);
             if(result.length == 0){
                 await ram.findOneAndUpdate({email: req.body.email}, 
@@ -34,11 +42,12 @@ router.post('/:bookingid', async(req, res)=> {
                         res.json({success: true, data: data})
                     })
             }else{
-                res.json({message: "This Property is booked"})
+                res.json({success: false,message: "This Property is booked"})
             }
              
         }   
     } catch (error) {
+        console.log("di")
         console.log(error.message)
         res.json({success: false})
     }

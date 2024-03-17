@@ -80,7 +80,7 @@ const Property = () => {
                   <BookingModal 
                     opended={modalOpened}
                     setOpened={setModalOpened}
-                    propertyID={id}
+                    propertyId={id}
                     email={localStorage.getItem('mail')}
                   />
                 </div>

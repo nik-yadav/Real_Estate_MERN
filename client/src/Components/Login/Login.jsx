@@ -46,7 +46,7 @@ const Login = () => {
 
     if(json.success){
       localStorage.setItem("authToken", json.authToken)
-      localStorage.setItem("authToken", json.mail)
+      localStorage.setItem("mail", json.mail)
       navigate('/');
     }
 
