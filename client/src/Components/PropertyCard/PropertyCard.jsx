@@ -6,10 +6,10 @@ import { propertycontext } from '../../Context/userContext'
 const PropertyCard = ({card,i}) => {
 
     const navigate = useNavigate();
-    const [propertyState, setpropertyState] = useContext(propertycontext)
+    // const [propertyState, setpropertyState] = useContext(propertycontext)
 
     const handleClick = (card) => {
-      setpropertyState(card)
+      // setpropertyState(card)
       // console.log(card)
       navigate(`../properties/${card._id}`)
     }

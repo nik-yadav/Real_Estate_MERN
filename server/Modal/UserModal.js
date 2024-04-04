@@ -22,7 +22,7 @@ const UserSchema = new Schema({
         type: String,
     },
     bookedVisits:{
-        type: Array,
+        type: Object,
     },
     favResidenciesid:{
         type: String,

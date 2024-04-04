@@ -19,6 +19,10 @@ const Header = () => {
         setopened(true)
     }
 
+    const handlelogout = () => {
+        localStorage.clear();
+    }
+
   return (
     <section className='h-wrapper'>
         <div className='flexCenter innerWidth paddings h-container'>
@@ -38,7 +42,10 @@ const Header = () => {
                         <button className='button' onClick={()=>navigate('/login')}>Login</button>
                     )
                     :(
-                        <Avatar src="/broken-image.jpg" />
+                        <div onClick={handlelogout}>
+                            <Avatar src="/broken-image.jpg"/>
+                        </div>
+                        
                     )}
 
                     {/* <div className="menu-icon" onClick={() => setMenuOpened((prev) => !prev)}>

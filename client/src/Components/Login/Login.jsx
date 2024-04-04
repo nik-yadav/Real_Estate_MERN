@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./Login.css"
 import {Link, useNavigate} from 'react-router-dom';
+import {user} from "../../Context/userContext"
 const Login = () => {
 
   const navigate = useNavigate();
@@ -9,6 +10,8 @@ const Login = () => {
     username:"",
     password:"",
   })
+
+  const [userState, setuserState] = useContext(user)
 
   const onchange = (e) => {
     setCredentials({...credentials, [e.target.name]:e.target.value})
@@ -46,7 +49,8 @@ const Login = () => {
 
     if(json.success){
       localStorage.setItem("authToken", json.authToken)
-      localStorage.setItem("mail", json.mail)
+      localStorage.setItem("email", json.mail)
+      // setuserState(json.data)
       navigate('/');
     }
 

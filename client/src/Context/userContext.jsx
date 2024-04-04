@@ -10,9 +10,9 @@ export function UserContext({children}){
     return(
         <div>
         <user.Provider value={[userState, setuserState]}>
-          <propertycontext.Provider value={[propertyState, setpropertyState]}>
             {children}
-          </propertycontext.Provider>
+          {/* <propertycontext.Provider value={[propertyState, setpropertyState]}>
+          </propertycontext.Provider> */}
         </user.Provider>
     </div>
     )

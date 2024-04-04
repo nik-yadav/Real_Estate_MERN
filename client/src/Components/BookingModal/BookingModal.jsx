@@ -15,22 +15,25 @@ const BookingModal = ({opended, setOpened, propertyId, email}) => {
 
   const [date, setDate] = useState(dayjs(new Date()))
   const handleCloseModal = async() => {
-    setOpened(false);
-    // console.log(date);
-    const response = await fetch(`http://localhost:5000/bookings/:${propertyId}`, {
+    
+    // console.log(date.$d);
+    // console.log(email);
+    console.log(propertyId);
+    const response = await fetch(`http://localhost:5000/bookings/bookingid/${propertyId}`, {
       method:"POST",
       headers:{
           "Content-Type":"application/json"
       },
       body: JSON.stringify({
         email: email,
-        date: date,
+        date: date.$d,
+        active: true,
       })
     })
 
     const json = await response.json();
 
-    console.log(json)
+    // console.log(json)
 
     if(!json.success){
       if(json.message){
@@ -43,6 +46,7 @@ const BookingModal = ({opended, setOpened, propertyId, email}) => {
     if(json.success){
       alert("Your Property is added")
     }
+    setOpened(false);
   };
 
   return (

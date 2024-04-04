@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const ram = require('../Modal/ResidencyModal')
+const bam = require('../Modal/UserModal')
 
 // api = "http://localhost:5000/property/properties"
 router.get('/properties', async(req, res) => {
@@ -47,6 +48,6 @@ router.post('/properties/:propertyid', async(req, res) => {
     }
 })
 
-router.post('/addproperty')
+
 
 module.exports = router;
